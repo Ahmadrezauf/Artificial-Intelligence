@@ -24,7 +24,7 @@ def Perceptron(priorWeights, inputFeatures, inputClasses , testFeatures) :
 
         # if not correct, should update weights
         if number != inputClasses[counter] :
-
+            print(str(counter) + " for this input the output is incorrect the predicted class is " + str(number))
             # Minus wrong class
             priorWeights[number] = minusOfTwoVectors(priorWeights[number] , img)
 
@@ -43,6 +43,7 @@ def Perceptron(priorWeights, inputFeatures, inputClasses , testFeatures) :
         for wei in priorWeights :
             pred = Similarity_innerProd(img , wei)
             if pred > maxPred :
+                maxPred = pred
                 number = innerCounter
 
             innerCounter += 1
