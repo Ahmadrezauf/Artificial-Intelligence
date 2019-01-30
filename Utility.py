@@ -37,10 +37,9 @@ def multiplyScalar (scalar , vec) :
     return out
 
 def Similarity_Kernel_x2 (vec1 , vec2) :
-    def Similarity_innerProd(vec1, vec2):
-        out = 0
-        for i in range(len(vec1)):
-            out += ((vec1[i]**2) * (vec2[i]**2))
+    out = 0
+    for i in range(len(vec1)):
+        out += ((vec1[i]**2) * (vec2[i]**2))
 
-        return out
+    return out
 
