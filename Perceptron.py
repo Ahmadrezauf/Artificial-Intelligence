@@ -2,7 +2,7 @@ from Utility import Similarity_innerProd
 from Utility import sumOfTwoVectors
 from Utility import minusOfTwoVectors
 
-def Perceptron (priorWeights, inputFeatures, inputClasses , testFeatures) :
+def Perceptron(priorWeights, inputFeatures, inputClasses , testFeatures) :
     # priorWeights is a list of lists
     # inputfeatures is a list of lists
     # classes is a list
@@ -34,6 +34,7 @@ def Perceptron (priorWeights, inputFeatures, inputClasses , testFeatures) :
         counter += 1
 
     outputClasses = []
+    print(priorWeights)
     for test in testFeatures :
         img = test
         maxPred = -1
@@ -46,3 +47,4 @@ def Perceptron (priorWeights, inputFeatures, inputClasses , testFeatures) :
 
             innerCounter += 1
         outputClasses.append(number)
+    return outputClasses

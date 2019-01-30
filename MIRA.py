@@ -55,3 +55,4 @@ def MIRA (priorWeights, inputFeatures, inputClasses , testFeatures) :
 
             innerCounter += 1
         outputClasses.append(number)
+    return outputClasses

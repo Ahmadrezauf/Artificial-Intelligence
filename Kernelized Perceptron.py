@@ -58,3 +58,4 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
         innerCounter += 1
 
         outputClasses.append(number)
+    return outputClasses
