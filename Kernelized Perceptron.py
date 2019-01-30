@@ -7,7 +7,7 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
 
     xi_s = []
 
-    counter += 1
+    counter = 0
     for inp in inputFeatures :
         img = inp
         maxPred = -1
@@ -24,6 +24,7 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
                 inInnerCounter += 1
 
             if sim_jy > maxPred:
+                maxPred = sim_jy
                 number = innerCounter
 
             innerCounter += 1
@@ -31,17 +32,29 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
         # if not correct, should update weights
         ## Putting a bound on the step size ===> needed?
         if number != inputClasses[counter]:
-            stepSize = 0
-
-            # calculating tau
-            tmp = minusOfTwoVectors(priorWeights[number], priorWeights[inputClasses[counter]])
-            tmp = (Similarity_innerProd(tmp, img) + 1) / (2 * Similarity_innerProd(img, img))
-
-            # Minus wrong class
-            priorWeights[number] = minusOfTwoVectors(priorWeights[number], multiplyScalar(tmp, img))
-
-            # Plus right class
-            priorWeights[inputClasses[counter]] = sumOfTwoVectors(priorWeights[inputClasses[counter]],
-                                                                  multiplyScalar(tmp, img))
+            alphas[number][counter] -= 1
+            alphas[counter][counter] += 1
 
         counter += 1
+
+    outputClasses = []
+    for test in testFeatures:
+        img = test
+        maxPred = -1
+        number = -1
+        for wei in alphas:
+            tmpAlpha = wei
+
+            sim_jy = 0
+            inInnerCounter = 0
+            for j in tmpAlpha:
+                sim_jy += (j * Similarity_Kernel_x2(img, inputFeatures[inInnerCounter]))
+                inInnerCounter += 1
+
+            if sim_jy > maxPred:
+                maxPred = sim_jy
+                number = innerCounter
+
+        innerCounter += 1
+
+        outputClasses.append(number)
