@@ -1,3 +1,4 @@
+from Utility import Similarity_Kernel_x2
 def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
     # alpha is a list of lists
     # inputfeatures is a list of lists
@@ -5,7 +6,7 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
     # This function returns the class of the test features
 
     xi_s = []
-    
+
     counter += 1
     for inp in inputFeatures :
         img = inp
@@ -15,11 +16,14 @@ def KernelizedPerceptron (alphas , inputFeatures, inputClasses, testFeatures) :
         for wei in alphas:
             # Wei is a vector of alpha_i,y
             tmpAlpha = wei
+
             sim_jy = 0
+            inInnerCounter = 0
             for j in tmpAlpha :
-                sim_jy += (j * )
-            pred = (img, wei)
-            if pred > maxPred:
+                sim_jy += (j * Similarity_Kernel_x2(img , inputFeatures[inInnerCounter]))
+                inInnerCounter += 1
+
+            if sim_jy > maxPred:
                 number = innerCounter
 
             innerCounter += 1

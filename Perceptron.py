@@ -17,6 +17,7 @@ def Perceptron (priorWeights, inputFeatures, inputClasses , testFeatures) :
         for wei in priorWeights :
             pred = Similarity_innerProd(img , wei)
             if pred > maxPred :
+                maxPred = pred
                 number = innerCounter
 
             innerCounter += 1
